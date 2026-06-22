@@ -192,7 +192,7 @@ export function PortfolioPage() {
                   people.
                 </p>
                 <div className="flex flex-wrap gap-2">
-                  {["Consultant", "Builder", "Mentor"].map((chip) => (
+                  {["Builder", "Consultant", "Mentor"].map((chip) => (
                     <span
                       key={chip}
                       className="rounded-full border border-border px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-muted"
