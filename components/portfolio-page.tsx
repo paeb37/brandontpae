@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { SectionNav, type SectionNavItem } from "@/components/section-nav";
+import { ANNOUNCE_MBA } from "@/components/mba-flag";
 
 const sectionNavItems: SectionNavItem[] = [
   { id: "about", label: "About" },
@@ -31,6 +32,24 @@ type JourneyNode = {
   initials?: string;
 };
 
+// Real MIT Sloan content, preserved verbatim for a one-line restore.
+const mitSloanNode: JourneyNode = {
+  period: "Next",
+  school: "MIT Sloan",
+  role: "MBA — Early AdMIT Program",
+  detail: "",
+  image: images.mit,
+};
+
+// Neutral stand-in shown while ANNOUNCE_MBA is false.
+const mbaPlaceholderNode: JourneyNode = {
+  period: "Next",
+  school: "What's next",
+  role: "Deferred MBA application updates coming soon.",
+  detail: "",
+  initials: "···",
+};
+
 // Academic + professional trajectory — emphasized before projects. Missing
 // logos fall back to a letter-tile.
 const journey: JourneyNode[] = [
@@ -48,13 +67,7 @@ const journey: JourneyNode[] = [
     detail: "Advising enterprise clients on performance and automation.",
     image: images.bcg,
   },
-  {
-    period: "Next",
-    school: "MIT Sloan",
-    role: "MBA — Early AdMIT Program",
-    detail: "",
-    image: images.mit,
-  },
+  ANNOUNCE_MBA ? mitSloanNode : mbaPlaceholderNode,
 ];
 
 type Entry = {
@@ -249,9 +262,12 @@ export function PortfolioPage() {
                 I&apos;m Brandon. I studied CS and Entrepreneurship at Columbia,
                 and got my start shipping production software — SWE internships
                 at FluidityIQ and Capco, plus AI research. Today I&apos;m a
-                consultant at BCG Boston on the technology &amp; digital track,
-                headed to MIT Sloan through the MBA Early AdMIT program. What I
-                care about most is building products at the intersection of AI
+                consultant at BCG Boston on the technology &amp; digital track
+                {ANNOUNCE_MBA
+                  ? ", headed to MIT Sloan through the MBA Early AdMIT program."
+                  : "."}{" "}
+                What I care about most is building products at the intersection
+                of AI
                 and human expression — most recently{" "}
                 <span className="text-accent">Unscripted</span> — and developing
                 other people: I coach MBA and college applicants through Leland

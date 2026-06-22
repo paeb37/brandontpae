@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Fraunces } from "next/font/google";
 import "./globals.css";
+import { ANNOUNCE_MBA } from "@/components/mba-flag";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,8 +20,9 @@ const fraunces = Fraunces({
 
 export const metadata: Metadata = {
   title: "Brandon Pae",
-  description:
-    "Brandon Pae — consultant at BCG Boston, MIT Sloan MBA admit, and builder working at the intersection of technology, business, and people.",
+  description: ANNOUNCE_MBA
+    ? "Brandon Pae — consultant at BCG Boston, MIT Sloan MBA admit, and builder working at the intersection of technology, business, and people."
+    : "Brandon Pae — consultant at BCG Boston and builder working at the intersection of technology, business, and people.",
 };
 
 export default function RootLayout({
