@@ -1,4 +1,5 @@
 import Image from "next/image";
+import type { ReactNode } from "react";
 import { SectionNav, type SectionNavItem } from "@/components/section-nav";
 import { ANNOUNCE_MBA } from "@/components/mba-flag";
 
@@ -27,7 +28,7 @@ type JourneyNode = {
   period: string;
   school: string;
   role?: string;
-  detail?: string;
+  detail?: ReactNode;
   image?: string;
   initials?: string;
 };
@@ -57,13 +58,17 @@ const journey: JourneyNode[] = [
     period: "Undergraduate",
     school: "Columbia University",
     role: "B.S. Computer Science + Entrepreneurship",
-    detail: "3.99 GPA",
+    detail: (
+      <>
+        3.99 GPA, <em className="italic">cum laude</em>
+      </>
+    ),
     image: images.columbia,
   },
   {
     period: "Now",
     school: "BCG Boston",
-    role: "Consultant — Technology & Digital",
+    role: "Consultant - Technology & Digital",
     detail: "Advising enterprise clients on performance and automation.",
     image: images.bcg,
   },
@@ -87,7 +92,7 @@ const mentoringEntries: Entry[] = [
     title: "Almaworks Accelerator / CORE",
     role: "Director",
     summary:
-      "Mentored 30+ early-stage Columbia founders — connecting them with the right alumni mentors and investors, and helping them sharpen their pitches across five Demo Days.",
+      "Mentored 30+ early-stage Columbia founders - connecting them with the right alumni mentors and investors, and helping them sharpen their pitches across five Demo Days.",
     link: "https://entrepreneurship.columbia.edu/resource/almaworks/",
     image: images.almaworks,
     tags: ["Mentorship", "Entrepreneurship"],
@@ -96,7 +101,7 @@ const mentoringEntries: Entry[] = [
     title: "Columbia Spectator",
     role: "Head of Product",
     summary:
-      "Led a cross-functional product team across three of Spectator's digital products — CULPA, theSHAFT, and the mobile app — running user interviews, defining features, and shipping with engineering.",
+      "Led a cross-functional product team across three of Spectator's digital products - CULPA, theSHAFT, and the mobile app - running user interviews, defining features, and shipping with engineering.",
     link: "https://culpa.info/#/",
     image: images.spectator,
     tags: ["Product", "Leadership"],
@@ -113,7 +118,7 @@ const mentoringEntries: Entry[] = [
     title: "Claude (Anthropic)",
     role: "Builder Club Ambassador",
     summary:
-      "Co-founded a hands-on LLM builder community with Anthropic and ran workshops on prompt design, evaluation, and model experimentation — teaching peers to build with AI.",
+      "Co-founded a hands-on LLM builder community with Anthropic and ran workshops on prompt design, evaluation, and model experimentation - teaching peers to build with AI.",
     link: "https://www.anthropic.com/",
     image: images.claude,
     tags: ["Education", "Community"],
@@ -126,7 +131,7 @@ const buildingEntries: Entry[] = [
     title: "Unscripted",
     role: "Founder",
     summary:
-      "Building an AI writing tool that helps people express themselves genuinely — not in the polished, generic voice AI is trained to produce. Initially for college and MBA applicants.",
+      "Building an AI writing tool that helps people express themselves genuinely - not in the polished, generic voice AI is trained to produce. Initially for college and MBA applicants.",
     initials: "Un",
     tags: ["AI", "Writing"],
     featured: true,
@@ -223,7 +228,7 @@ export function PortfolioPage() {
                   rel="noreferrer"
                   className="inline-flex items-center rounded-md border border-accent/70 px-4 py-2 text-xs font-medium uppercase tracking-[0.2em] text-accent transition-colors hover:bg-accent/10"
                 >
-                  Résumé
+                  Resume
                 </a>
                 <a
                   href="https://linkedin.com/in/brandon-pae"
@@ -259,19 +264,20 @@ export function PortfolioPage() {
                 About
               </p>
               <p className="mt-5 max-w-2xl text-lg leading-8 text-foreground">
-                I&apos;m Brandon. I studied CS and Entrepreneurship at Columbia,
-                and got my start shipping production software — SWE internships
-                at FluidityIQ and Capco, plus AI research. Today I&apos;m a
-                consultant at BCG Boston on the technology &amp; digital track
-                {ANNOUNCE_MBA
-                  ? ", headed to MIT Sloan through the MBA Early AdMIT program."
-                  : "."}{" "}
-                What I care about most is building products at the intersection
-                of AI
-                and human expression — most recently{" "}
-                <span className="text-accent">Unscripted</span> — and developing
-                other people: I coach MBA and college applicants through Leland
-                and Crimson Education, and mentor founders and student teams.
+                Computer Science and Entrepreneurship at Columbia University,
+                graduated <em className="italic">cum laude</em> with a 3.99 GPA. I built my technical foundation
+                through software engineering internships and AI & robotics research
+                - today I work as a consultant at Boston Consulting Group, on the
+                technology and digital track.
+
+                <br />
+                <br />
+
+                What I care about most is building at the intersection of artificial
+                intelligence and human expression - most recently through{" "}
+                <span className="text-accent">Unscripted</span>. Outside of work, I
+                coach MBA and college applicants through Leland and Crimson
+                Education, and mentor founders and student teams.
               </p>
             </section>
 
@@ -279,7 +285,7 @@ export function PortfolioPage() {
               <SectionHeader
                 kicker="01"
                 title="Journey"
-                description="The throughline: a technical foundation, an academic path, and a consulting and leadership trajectory."
+                description="Columbia, BCG, and deferred MBA"
               />
 
               <div className="relative space-y-7 sm:space-y-8">
@@ -324,7 +330,7 @@ export function PortfolioPage() {
               <SectionHeader
                 kicker="02"
                 title="Mentoring & Leadership"
-                description="A consistent thread of guiding founders, student teams, and applicants."
+                description="Founders, product teams, and students - mostly through teaching and coaching."
               />
               <div className="grid gap-5 sm:grid-cols-2">
                 {mentoringEntries.map((entry) => (

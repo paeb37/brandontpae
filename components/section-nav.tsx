@@ -60,16 +60,13 @@ export function SectionNav({ items }: SectionNavProps) {
             type="button"
             onClick={() => handleClick(item.id)}
             aria-current={isActive ? "true" : undefined}
-            className={`flex w-full items-center justify-between rounded-md border px-3 py-2 text-left text-sm transition-colors duration-200 ${
+            className={`flex w-32 items-center rounded-md border px-3 py-2 text-left text-sm transition-colors duration-200 ${
               isActive
                 ? "border-accent/70 bg-accent/10 text-accent"
                 : "border-border text-muted hover:border-accent/50 hover:bg-accent/5 hover:text-foreground"
             }`}
           >
             <span>{item.label}</span>
-            <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-current/70">
-              {String(item.id).slice(0, 2)}
-            </span>
           </button>
         );
       })}
